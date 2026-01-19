@@ -32,6 +32,7 @@
             listView1 = new ListView();
             contextMenuStrip1 = new ContextMenuStrip(components);
             修改图片存储目录DToolStripMenuItem = new ToolStripMenuItem();
+            删除DToolStripMenuItem = new ToolStripMenuItem();
             txtPrompt = new TextBox();
             BtnSave = new Button();
             lbl_Note = new Label();
@@ -59,16 +60,23 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 修改图片存储目录DToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 修改图片存储目录DToolStripMenuItem, 删除DToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(251, 34);
+            contextMenuStrip1.Size = new Size(255, 64);
             // 
             // 修改图片存储目录DToolStripMenuItem
             // 
             修改图片存储目录DToolStripMenuItem.Name = "修改图片存储目录DToolStripMenuItem";
-            修改图片存储目录DToolStripMenuItem.Size = new Size(250, 30);
-            修改图片存储目录DToolStripMenuItem.Text = "修改图片存储目录(&D)";
+            修改图片存储目录DToolStripMenuItem.Size = new Size(254, 30);
+            修改图片存储目录DToolStripMenuItem.Text = "修改图片存储目录(&M)";
             修改图片存储目录DToolStripMenuItem.Click += 修改图片存储目录DToolStripMenuItem_Click;
+            // 
+            // 删除DToolStripMenuItem
+            // 
+            删除DToolStripMenuItem.Name = "删除DToolStripMenuItem";
+            删除DToolStripMenuItem.Size = new Size(254, 30);
+            删除DToolStripMenuItem.Text = "删除(&D)";
+            删除DToolStripMenuItem.Click += 删除DToolStripMenuItem_Click;
             // 
             // txtPrompt
             // 
@@ -112,6 +120,7 @@
             // 
             // txtNote
             // 
+            txtNote.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtNote.Location = new Point(198, 189);
             txtNote.Name = "txtNote";
             txtNote.Size = new Size(1149, 30);
@@ -143,5 +152,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem 修改图片存储目录DToolStripMenuItem;
         private TextBox txtNote;
+        private ToolStripMenuItem 删除DToolStripMenuItem;
     }
 }

@@ -24,6 +24,12 @@ namespace PromptTool
             set { txtNote.Text = value; }
         }
 
+        public bool DelSource
+        {
+            get { return checkBox1.Checked; }
+            set { checkBox1.Checked = value; }
+        }
+
         public SetPrompt()
         {
             InitializeComponent();

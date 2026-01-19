@@ -134,6 +134,11 @@ namespace PromptTool
                 listView1.Items.Add(lvItem);
                 listView1.EndUpdate();
                 db.Insertable(prompt).ExecuteCommand();
+
+                if (sp.DelSource)
+                { 
+                    File.Delete(files[0]);
+                }
             };
             sp.Show();
         }
@@ -197,6 +202,7 @@ namespace PromptTool
         }
         #endregion
 
+        #region 右键菜单
         private void 修改图片存储目录DToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -209,6 +215,23 @@ namespace PromptTool
                 return;
             }
         }
+
+        private void 删除DToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0)
+                return;
+            if (MessageBox.Show("确定要删除选中的提示词吗？", "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var lvItem = listView1.SelectedItems[0];
+                var prompt = lvItem.Tag as Prompt;
+                if (prompt != null)
+                {
+                    db.Deleteable<Prompt>().Where(x => x.Id == prompt.Id).ExecuteCommand();
+                    listView1.Items.Remove(lvItem);
+                }
+            }
+        } 
+        #endregion
 
         void InitListView()
         {
@@ -253,7 +276,7 @@ namespace PromptTool
                     {
                         string imageKey = fullPath;
                         imageList.Images.Add(imageKey, bmp);
-                        var lvItem = new ListViewItem(item.Note!=""?item.Note: item.ImageName)
+                        var lvItem = new ListViewItem(item.Note != "" ? item.Note : item.ImageName)
                         {
                             ImageKey = imageKey,
                             Tag = item
@@ -277,7 +300,6 @@ namespace PromptTool
         {
             using var image = SixLabors.ImageSharp.Image.Load(fullPath);
             image.Mutate(x => x.Resize(128, 128));
-
             using var ms = new MemoryStream();
             image.SaveAsBmp(ms);
 
@@ -308,5 +330,7 @@ namespace PromptTool
             return ext == ".mp4" || ext == ".avi" || ext == ".mkv";
         }
         #endregion
+
+        
     }
 }

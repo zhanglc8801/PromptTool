@@ -33,6 +33,7 @@
             label1 = new Label();
             label2 = new Label();
             txtNote = new TextBox();
+            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // txtPrompt
@@ -78,11 +79,22 @@
             txtNote.Size = new Size(627, 30);
             txtNote.TabIndex = 4;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(421, 317);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(126, 28);
+            checkBox1.TabIndex = 5;
+            checkBox1.Text = "删除源文件";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // SetPrompt
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(753, 369);
+            Controls.Add(checkBox1);
             Controls.Add(txtNote);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -105,5 +117,6 @@
         private Label label1;
         private Label label2;
         private TextBox txtNote;
+        private CheckBox checkBox1;
     }
 }
