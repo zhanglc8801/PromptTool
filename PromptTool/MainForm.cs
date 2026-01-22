@@ -32,9 +32,14 @@ namespace PromptTool
             db.CodeFirst.InitTables<Prompt>();
             db.CodeFirst.InitTables<Cfg>();
             InitListView();
-
             CheckImagePath();
-            await InitData();
+            using (var loading = new Loading())
+            {
+                loading.Show(this);
+                loading.Refresh();
+                await InitData();
+                loading.Close();
+            }
         }
 
         private void CheckImagePath()
@@ -74,7 +79,9 @@ namespace PromptTool
                 db.Queryable<Prompt>().ToList()
             );
             // 2. 并发生成缩略图
-            await LoadItemsAsync(list);
+            await Task.Run(() =>
+                LoadItemsAsync(list)
+            );    
         }
 
         #region listView1事件
